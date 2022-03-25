@@ -18,7 +18,7 @@ const ProductDetail = () => {
         {
                PRODUCTS
                &&
-               PRODUCTS.map((products, index) => {
+               PRODUCTS.map((products, index) => (
             <MDBCard style={{ maxWidth: '540px' }}>
             <MDBRow key={index} className='g-0'>
             <MDBCol md='4'>
@@ -44,7 +44,7 @@ const ProductDetail = () => {
             </MDBCol>
             </MDBRow>
             </MDBCard>
-               })}
+  ))}
 <Footer/>
 
 </React.Fragment>
