@@ -3,6 +3,7 @@ import { PRODUCTS } from '../../shared/products';
 import ReactStars from 'react-stars';
 import Header from './Header';
 import Footer from './Footer';
+import '../CSS/Detailproduct.css';
 import {  MDBBtn ,MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 const ProductDetail = () => {
@@ -14,13 +15,14 @@ const ProductDetail = () => {
     <React.Fragment>
         <Header/>
        <MDBBtn  className='text-dark' color='light'> BACK </MDBBtn>
- 
         {
+            
                PRODUCTS
                &&
                PRODUCTS.map((products, index) => (
-            <MDBCard style={{ maxWidth: '540px' }}>
-            <MDBRow key={index} className='g-0'>
+                <div className='container mt-4 m-5 card-1'>
+            <MDBCard style={{ maxWidth: '100%' }}>
+            <MDBRow key={index} className='g-1'>
             <MDBCol md='4'>
                 <MDBCardImage src={products.image} alt='...' fluid />
             </MDBCol>
@@ -44,9 +46,12 @@ const ProductDetail = () => {
             </MDBCol>
             </MDBRow>
             </MDBCard>
-  ))}
-<Footer/>
+            
+            </div>
+  ))
 
+  }
+<Footer/>
 </React.Fragment>
 
 

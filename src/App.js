@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Footer from './components/JS/Footer';
 import Header from './components/JS/Header';
 import Login from './components/JS/Login';
@@ -25,7 +25,6 @@ const App = () => {
           <Route path='footer' element={ <Footer/>}/>
           <Route path='products' element={<Products/> }/>
           <Route path='productdetail' element={< ProductDetail/>}/>
-         
         </Routes>  
       
       </div>

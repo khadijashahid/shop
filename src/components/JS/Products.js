@@ -4,13 +4,24 @@ import Footer from './Footer';
 import { PRODUCTS } from '../../shared/products';
 import '../CSS/Product.css';
 import ReactStars from 'react-stars';
-import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText,  MDBCol } from 'mdb-react-ui-kit';
+import { Route, Routes } from 'react-router-dom';
+import ProductDetail from './ProductDetail';
 
 const Products = () => {
   
 const ratingChanged = (newRating) => {
   console.log(newRating)
 }
+
+const onProductSelect=() => {
+  console.log("say Hi");
+  <Routes>
+    <Route path='productdetail' element={<ProductDetail/>}>
+    </Route>
+  </Routes>
+}
+
   return (
     <React.Fragment>
     
@@ -21,11 +32,10 @@ const ratingChanged = (newRating) => {
           &&
           PRODUCTS.map((product, index) => {
             return (
-              <div className='container clearfix'>
-              <MDBRow key={index} className=' row-cols-1 row-cols-md-3 g-4' >
-                <MDBCol className=''>
-                  <MDBCard className='h-100 '>
-                    <MDBCardImage
+              <div className='container clearfix mt-5 m-4 card '>
+                <MDBCol key={index} className=''>
+                  <MDBCard className='h-100' onClick={onProductSelect} >
+                    <MDBCardImage 
                       src={product.image}
                       alt={product.name}
                       position='top'
@@ -44,7 +54,7 @@ const ratingChanged = (newRating) => {
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
-              </MDBRow>
+         
               </div>
             )
           })
