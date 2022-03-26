@@ -8,11 +8,12 @@ import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText,  MDBCol 
 
 
 const Products = () => {
- const [selectedProduct, setSelectedProduct] = useState();
+ const [selectedProduct, setSelectedProduct] = useState( PRODUCTS);
 
  // function for on click 
- function onProductSelect(product){
-   setSelectedProduct = product;
+ function onProductSelect(){
+   console.log("clickkeed")
+   PRODUCTS && PRODUCTS.filter((product) => product.id).map((product) => product.name)
  }
 
 // function for product rendering after select 
@@ -39,7 +40,7 @@ const ratingChanged = (newRating) => {
   console.log(newRating)
 }
 
-const productList = PRODUCTS.map((product) => {
+const productList = PRODUCTS && PRODUCTS.map((product) => {
   return(
     <div className='container clearfix mt-5 m-4 card '>
     <MDBCol className=''>
@@ -76,6 +77,7 @@ const productList = PRODUCTS.map((product) => {
       {productList}
     </div><div>
         {renderProduct(selectedProduct)}
+       
       </div>
       <Footer/>
       </>
