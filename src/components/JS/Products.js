@@ -1,90 +1,68 @@
-import React , { useState}from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import { PRODUCTS } from '../../shared/products';
-import '../CSS/Product.css';
-import ReactStars from 'react-stars';
-import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText,  MDBCol } from 'mdb-react-ui-kit';
-
+import React from "react"
+import Header from "./Header"
+import { PRODUCTS } from "../../shared/products"
+import "../CSS/Product.css"
+import ReactStars from "react-stars"
+import {
+  MDBCard,
+  MDBCardImage,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardGroup,
+  MDBRow,
+  MDBCol,
+} from "mdb-react-ui-kit"
+import { useNavigate } from "react-router-dom"
 
 const Products = () => {
- const [selectedProduct, setSelectedProduct] = useState( PRODUCTS);
-
- // function for on click 
- function onProductSelect(){
-   console.log("clickkeed")
-   PRODUCTS && PRODUCTS.filter((product) => product.id).map((product) => product.name)
- }
-
-// function for product rendering after select 
- const  renderProduct = (product) => {
-  if (product != null)
-  return(
-      <MDBCard>
-          <MDBCardImage top src={product.image} alt={product.name} />
-          <MDBCardBody>
-            <MDBCardTitle>{product.name}</MDBCardTitle>
-            <MDBCardText>{product.description}</MDBCardText>
-          </MDBCardBody>
-      </MDBCard>
-  );
-else
-  return(
-      <div></div>
-  );
-}
- 
-
- // function for react Stars
-const ratingChanged = (newRating) => {
-  console.log(newRating)
-}
-
-const productList = PRODUCTS && PRODUCTS.map((product) => {
-  return(
-    <div className='container clearfix mt-5 m-4 card '>
-    <MDBCol className=''>
-      <MDBCard className='h-100'key={product.id} onClick={() => onProductSelect(product)}>
-        <MDBCardImage 
-          src={product.image}
-          alt={product.name}
-          position='top'
-        />
-        <MDBCardBody>
-          <MDBCardTitle> {product.name} </MDBCardTitle>
-          <ReactStars
-              count={5}
-              onChange={ratingChanged}
-              size={24}
-              color2={'#ffd700'}
-              value={3} />
-          <MDBCardText>
-            ${product.price}
-          </MDBCardText>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-
-  </div>
-
-  );
-})
+  const navigate = useNavigate()
+  const ratingChanged = (newRating) => {
+    console.log(newRating)
+  }
+  const pro = PRODUCTS.map(product => {
+    return(
+      <div
+              className=" container-fluid product"
+              onClick={() => navigate(`/products/${product.id}`)}
+            >
+                    <span>
+                  <MDBCardGroup key={product.id}  className="cards" >
+                    <MDBRow className="">
+                      <MDBCol className="">
+                  <MDBCard className="h-100 ">
+                    <MDBCardImage
+                      src={product.image}
+                      alt={product.name}
+                      position="top"
+                    />
+                    <MDBCardBody>
+                      <MDBCardTitle> {product.name} </MDBCardTitle>
+                      <ReactStars
+                        count={5}
+                        onChange={ratingChanged}
+                        size={24}
+                        color2={"#ffd700"}
+                        value={3}
+                      />
+                      <MDBCardText>${product.price}</MDBCardText>
+                    </MDBCardBody>
+                  </MDBCard>
+                  </MDBCol>
+                  </MDBRow>
+                 
+                  </MDBCardGroup>
+                  </span>   
+            </div>
+    );
+  });
 
   return (
-    <>
-    <Header/>
-    <div>
-      {productList}
-    </div><div>
-        {renderProduct(selectedProduct)}
-       
-      </div>
-      <Footer/>
-      </>
-   
-  );
+    <React.Fragment>
+      <Header />
+     {pro}
+    </React.Fragment>
+  )
 }
 
-
-
-export default Products;
+export default Products
