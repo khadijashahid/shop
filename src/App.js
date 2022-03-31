@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react"
 import Footer from "./components/JS/Footer"
 
-import ButtonAppBar from './components/JS/Header2'
+
 import Login from "./components/JS/Login"
 import { Routes, Route } from "react-router-dom"
 import Products from "./components/JS/Products"
@@ -23,7 +23,7 @@ const App = () => {
     <div className="App">
 
       <Routes>
-        <Route path="/" element={<ButtonAppBar/>} />
+        <Route path="/" element={<Login/>} />
         <Route path="/login" element={<Login />} />
         {/* <Route path="/footer" element={<Footer />} />  */}
         <Route path="/products" element={<Products />} />

@@ -1,23 +1,36 @@
 import React from 'react';
-import {
-    MDBInput,
-    MDBBtn,
-  } from 'mdb-react-ui-kit';
+
   import '../CSS/Login.css';
+  import ButtonAppBar from './Header2'
+import {Button, InputLabel, TextField} from '@mui/material';
+
 
 const Login = () => {
   return (
-    <div className='container'>
-    <form className='square border border-0'>
-        <h2 className='form-heading'> Account Login </h2>
-      <MDBInput className='mb-4 mt-4 inp' type='email' id='form2Example1' label='Email address' />
-      <MDBInput className='mb-4 mt-4 inp' type='password' id='form2Example2' label='Password' />
-      <MDBBtn type='submit' className='mb-4 ' block>
-        Login
-      </MDBBtn>
-      
-    </form>
-    </div>
+    
+    <>
+    <ButtonAppBar />
+    
+   <div className='container'>
+     <div className='row justify-content-md-center'>
+       <div className='card mt-4 '> 
+       <div className='card-header'> Account Login 
+       </div>
+       <div className='card-body'> 
+       <form className='form'>
+             <InputLabel className='inp'> Email:  </InputLabel>
+             
+               <TextField fullWidth id="outlined-basic" label="enter your Emial"/> 
+               <InputLabel className='inp' > Password: </InputLabel>
+             <TextField fullWidth id="outlined-basic" label="enter your password"/>
+           </form>
+           <Button fullWidth variant="contained"> Sign In</Button>
+       </div>
+       </div>      
+     </div>
+   </div>
+
+</>
   )
 }
 

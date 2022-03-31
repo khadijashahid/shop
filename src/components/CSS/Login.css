@@ -1,4 +1,25 @@
-.form-heading{
-    text-align: center;
-    border: 1px solid black;
-}
+
+
+.form {
+    max-width: 330px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    background:white;
+    padding: 10px;
+    
+  }
+  .body-form{
+      width: 700px;
+   height: 400px;
+  }
+
+
+  .inp{
+      margin: 10px 0 20px 0 ;
+  }
+  .card-header{
+      text-align: center;
+      font-size: larger;
+      font-weight:bolder;
+  }
