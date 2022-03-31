@@ -1,11 +1,17 @@
 import React from "react"
 import { PRODUCTS } from "../../shared/products"
 import ReactStars from "react-stars"
-import Header from "./Header"
+import ButtonAppBar from './Header2'
 
-import {
-  MDBBtn,
-} from "mdb-react-ui-kit"
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+
+import Typography from '@mui/material/Typography';
+
+
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
@@ -21,30 +27,45 @@ const ProductDetail = () => {
   const ratingChanged = (newRating) => {
     console.log(newRating)
   }
+ 
 
   return (
     <React.Fragment>
-    <Header/>
-   <MDBBtn  className='text-dark' color='light'> BACK </MDBBtn>
-   <div className="" >
-     <image src={thisProduct.image} ></image> 
-   </div>
-   <div className="" onClick={() => navigate(`/productdetail/${thisProduct.id}`)}>
-     <h3>
-       {thisProduct.name}
-     </h3>
-     <ReactStars
+    <ButtonAppBar/>
+    <Button variant="contained"> BACK </Button>
+    
+   <CardMedia
+        key={thisProduct.id}
+        component="img"
+        sx={{ width: 151 }}
+        image={thisProduct.image}
+        alt={thisProduct.name}
+      />
+  
+   <Card sx={{ display: 'flex' }} onClick={() => navigate(`/productdetail/${thisProduct.id}`)}  >
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <CardContent sx={{ flex: '1 0 auto' }}>
+          <Typography component="div" variant="h5">
+          {thisProduct.name}
+          </Typography>
+
+          <ReactStars
                       count={5}
                       onChange={ratingChanged}
                       size={24}
                       color2={'#ffd700'}
                       value={3} />
-      <h4> 
-       Price :$ {thisProduct.price}
-      </h4>
-      <p> { thisProduct.description}</p>
-   </div>
-
+       
+        </CardContent>
+        <Typography component="div" variant="p">
+          Price: ${thisProduct.price}
+          </Typography>
+          <Typography component="div" variant="p">
+          {thisProduct.description}
+          </Typography>
+      </Box>
+ 
+    </Card>
 
 
 </React.Fragment>

@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from "react"
 import Footer from "./components/JS/Footer"
-import Header from "./components/JS/Header"
+
+import ButtonAppBar from './components/JS/Header2'
 import Login from "./components/JS/Login"
 import { Routes, Route } from "react-router-dom"
 import Products from "./components/JS/Products"
@@ -20,8 +21,9 @@ const App = () => {
   //  })
   return (
     <div className="App">
+
       <Routes>
-        <Route path="/" element={<Header />} />
+        <Route path="/" element={<ButtonAppBar/>} />
         <Route path="/login" element={<Login />} />
         {/* <Route path="/footer" element={<Footer />} />  */}
         <Route path="/products" element={<Products />} />
