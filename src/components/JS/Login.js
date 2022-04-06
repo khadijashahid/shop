@@ -13,7 +13,7 @@ const Login = () => {
     
    <div className='container'>
      <div className='row justify-content-md-center'>
-       <div className='card mt-4 '> 
+       <div className='px-4 card mt-4 '> 
        <div className='card-header'> Account Login 
        </div>
        <div className='card-body'> 

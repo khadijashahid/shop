@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from "react"
 import Footer from "./components/JS/Footer"
-
-
 import Login from "./components/JS/Login"
 import { Routes, Route } from "react-router-dom"
 import Products from "./components/JS/Products"
 import ProductDetail from "./components/JS/ProductDetail"
 import Cart from "./components/JS/Cart";
+
+
 
 const App = () => {
   //  const [products, setProducts] = useState([]);
