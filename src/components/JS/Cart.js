@@ -1,7 +1,8 @@
 import React, { useReducer } from 'react';
 import {PRODUCTS} from '../../shared/products';
 import { useParams } from 'react-router-dom';
-
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material/styles';
 import ButtonAppBar from './Header2';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,6 +15,17 @@ const currencyOptions = {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#5e35b1',
+      },
+      secondary: {
+        main: '#7e57c2',
+      },
+    },
+  });
 
   function cartReducer(state, action) {
     switch(action.type) {
@@ -31,16 +43,10 @@ const currencyOptions = {
         return state;
     }
   }
-  function totalReducer(state, action) {
-    if(action.type === 'add') {
-      return state + action.price;
-    }
-    return state - action.price
-  }
+
 
 const Cart = () => {
     const [cart, setCart] = useReducer( cartReducer , []);
-    const [total, setTotal] = useReducer(totalReducer, 0);
     const { id } = useParams()
     const thisProduct = PRODUCTS.find(prod => prod.id === id)
     const Img = styled('img')({
@@ -73,6 +79,7 @@ const Cart = () => {
  
   return (
    <>
+   <ThemeProvider  theme={theme}>
   <ButtonAppBar/>
   <Box
       sx={{
@@ -121,22 +128,25 @@ const Cart = () => {
            </Typography>
            <ButtonGroup>
              {cart.length} 
-               <Button 
+               <Button  className='p-2 m-1'
                 aria-label="increase"
+                variant='outlined'
                 onClick={() => {
                   add(thisProduct)
                 }}>
                  <AddIcon fontSize='small'/>
                </Button> 
-             </ButtonGroup>
-             <Button
+               <Button className='p-2 m-1'
                  aria-label="reduce"
+                 variant='outlined'
                  onClick={() => {
                   remove(thisProduct)
                  }}
                >
                  <DeleteIcon fontSize='small'/>
                </Button>
+             </ButtonGroup>
+           
            
       </Grid>
       </Grid>
@@ -177,7 +187,7 @@ const Cart = () => {
             </Typography>
           </Grid>
           <Grid item xs={1} sm={1} md={1} lg={1}>
-            <Typography variant="h6" component="div">
+            <Typography  component="div">
               0%
             </Typography>
           </Grid>
@@ -187,11 +197,11 @@ const Cart = () => {
             </Typography>
           </Grid>
           <Grid item xs={1} sm={1} md={1} lg={1}>
-            <Typography variant="h6" component="div">
+            <Typography  component="div">
               ${getTotal(cart)}
             </Typography>
           </Grid>
-           <Button> Proceed to checkout</Button>
+           <Button variant='contained'> Proceed to checkout</Button>
                </Grid>
              </CardContent>
             </Card>
@@ -199,7 +209,7 @@ const Cart = () => {
         </Grid>
       </Grid>
     </Box>
-      
+    </ThemeProvider>
    </>
     
   )
