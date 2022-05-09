@@ -4,11 +4,10 @@ import { useParams } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
 import ButtonAppBar from './Header2';
-import AddIcon from '@mui/icons-material/Add';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Paper from '@mui/material/Paper';
 import '../CSS/Cart.css';
-import { Grid, ButtonBase,Box, Typography, styled, ButtonGroup, Button, Card, CardContent} from '@mui/material';
+import {  Box, Typography, styled, ButtonGroup, Button, Card, CardContent, Table, TableContainer, TableRow, TableCell} from '@mui/material';
 
 
 const currencyOptions = {
@@ -50,16 +49,11 @@ const Cart = () => {
     const { id } = useParams()
     const thisProduct = PRODUCTS.find(prod => prod.id === id)
     const Img = styled('img')({
-      margin: 'auto',
-      display:'block',
-      maxWidth: '100%',
-      maxHeight: '100%',
+      display:'inline',
+      width: '150px',
+      height: '150px',
     });
-    const Item = styled(Paper)(({ theme }) => ({
-      ...theme.typography.body2,
-      padding: theme.spacing(3),
-    
-    }));
+
 
     function getTotal(cart) {
       const total = cart.reduce((totalCost,item) => totalCost+item.price, 0)
@@ -81,134 +75,92 @@ const Cart = () => {
    <>
    <ThemeProvider  theme={theme}>
   <ButtonAppBar/>
-  <Box
-      sx={{
-        width: '100%',
-        height: '100%',
-      }}
-    />
-      <Box
-        sx={{
-          display: 'grid',
-          gap: 1,
-          gridTemplateAreas: `"header header header header"
-        "main main . sidebar"
-        "footer footer footer footer"`,
-        }}
-      />
       {/* Heading  */}
-  <div>
-      <Box sx={{gridArea: 'header' }}> <h2> SHOPPING CART</h2></Box>
+  <div className='container heading'>
+      <h2> SHOPPING CART</h2>
+      <Typography variant='subtitle2'>
+                 <hr/>
+      </Typography>
  </div>
-
-  <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} columns={16}>
-        <Grid item xs={8}>
-          <Item>
-          <Box sx={{ gridArea: 'main', display:'flex' }}>
+ <div className='container-fluid box '>
+         <Img alt={thisProduct.name} src={thisProduct.image}/>
       
-      <div className='container '>
-      <Grid container spacing={5}  >
-     <Grid item >
-       <ButtonBase sx={{ width: 150, height:128 }}>
-         <Img alt={thisProduct.name} src={thisProduct.image} />
-       </ButtonBase>
-     </Grid>
-
-     {/* horizontal description  */}
-    <Grid item xs={12} wrap-xs-nowrap>
-      <Grid item xs container direction="column" spacing={2}> 
-      <Grid item xs> 
-      
-      <Typography gutterBottom variant="subtitle1" component="p">
-            {thisProduct.name}
-           </Typography>
-           <Typography  gutterBottom variant="body" component='p'>
-            $ {thisProduct.price}
-           </Typography>
-           <ButtonGroup>
-             {cart.length} 
-               <Button  className='p-2 m-1'
-                aria-label="increase"
-                variant='outlined'
+     {/* horizontal description */}
+  <p className='hor'>
+     <p className='description'> {thisProduct.name}</p>
+     <p className='description'>$ {thisProduct.price }</p>
+     <p >
+       <Button>
+         <ButtonGroup>
+           <Button>
+            {cart.length}
+           </Button>
+           <Button>
+              <ArrowDropDownIcon  aria-label="increase"
                 onClick={() => {
                   add(thisProduct)
-                }}>
-                 <AddIcon fontSize='small'/>
-               </Button> 
-               <Button className='p-2 m-1'
+                }} />
+
+           </Button>
+         </ButtonGroup>
+       </Button>         
+               <Button
                  aria-label="reduce"
-                 variant='outlined'
                  onClick={() => {
                   remove(thisProduct)
                  }}
                >
-                 <DeleteIcon fontSize='small'/>
+                 <DeleteIcon fontSize='medium'/>
                </Button>
-             </ButtonGroup>
-           
-           
-      </Grid>
-      </Grid>
-    </Grid>
-    </Grid>
-      </div>
-  </Box>
-          </Item>
-        </Grid>
-{/* side menu */}
-        <Grid item xs={4}>
-          <Item>
-            <Card>
+     </p>
+    
+     </p>
+    {/* subtotal item */}
+            <Card sx={{marginLeft: '30px'}}>
              <CardContent>
                <Typography variant='div' component='h4'>
                  {""}
-                 Subtotal Items
+                 Subtotal Items:
                  ({cart.length})
                </Typography>
-              
                <Typography variant='subtitle2'>
                  <hr/>
                </Typography>
-               <Grid container>
-                 <Grid item xs={11} sm={11} md={11} lg={11}>
-                   <Typography variant='body2' component='div'>
+                 <TableContainer  component={Box}>
+                   <Table aria-label="spanning table">
+                     <TableRow>
+                      <TableCell align="left">     
                      Subtotal Price:
-                   </Typography>
-                 </Grid>
-                 <Grid item xs={1} sm={1} md={1} lg={1}>
-                   <Typography component='div'>
+                       </TableCell>
+                       <TableCell align="right"> 
                      ${thisProduct.price}
-                   </Typography>
-                 </Grid>
-                 <Grid item xs={11} sm={11} md={11} lg={11}>
-            <Typography variant="body2" component="div">
-              Discount: 
-            </Typography>
-          </Grid>
-          <Grid item xs={1} sm={1} md={1} lg={1}>
-            <Typography  component="div">
-              0%
-            </Typography>
-          </Grid>
-          <Grid item xs={11} sm={11} md={11} lg={11}>
-            <Typography variant="body1" component="div">
-              Total:
-            </Typography>
-          </Grid>
-          <Grid item xs={1} sm={1} md={1} lg={1}>
-            <Typography  component="div">
-              ${getTotal(cart)}
-            </Typography>
-          </Grid>
-           <Button variant='contained'> Proceed to checkout</Button>
-               </Grid>
+                       </TableCell>
+                     </TableRow>
+                     {/* 2 row */}
+                     <TableRow>
+                      <TableCell align="left">     
+                  Discount:
+                       </TableCell>
+                       <TableCell align="right"> 
+                  0%
+                       </TableCell>
+                     </TableRow>
+                     {/* 3 row */}
+                     <TableRow>
+                      <TableCell align="left">     
+                    Total Price:
+                       </TableCell>
+                       <TableCell align="right"> 
+                       ${getTotal(cart)}
+                       </TableCell>
+                     </TableRow>
+                   </Table>
+                   
+                 </TableContainer>      
+           <Button className='btn checkout' variant='contained'> Proceed to checkout</Button>         
              </CardContent>
             </Card>
-          </Item>
-        </Grid>
-      </Grid>
-    </Box>
+ </div>
     </ThemeProvider>
    </>
     

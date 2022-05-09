@@ -22,29 +22,21 @@ export default function ButtonAppBar() {
 
   return (
     <ThemeProvider theme={theme}>   
+
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component='div' sx={{ flexGrow: 1 , marginLeft: '250px' ,fontSize:'25px'}}>
             ReactShop
           </Typography>
-          
-          <PersonIcon/>LOGIN  
-        <div className='m-2'></div>     
           <ShoppingCartIcon/>CART 
+        <div className='m-2'></div>     
+        <PersonIcon/>LOGIN 
   
         </Toolbar>
       </AppBar>
     </Box>
+   
     </ThemeProvider>
   );
 }

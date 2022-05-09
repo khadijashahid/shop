@@ -1,0 +1,21 @@
+.btnBack{
+    margin: 10px 0 10px 50px ;
+}
+img{
+    margin: 10px 30px 0 10px;
+}
+.cartbox{
+    display: table;
+    width: 250px;
+    height: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px;
+ 
+}
+.btnCart{
+    display: inline-block;
+    position: center;
+    margin: 10px 0 10px 10px;
+    padding: auto;
+}
